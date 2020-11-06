@@ -5,21 +5,25 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 
 [Serializable]
-struct PhysicsData
+public struct PhysicsData
 {
-    //Vector2 pos;
-    Vector2 vel;
-    Vector2 acc;
-    Vector2 accumulatedForces;
-    float facing ;
-    float rotVel;
-    float rotAccel;
-    float dampingConst;
-    bool ignoreForces;
-    bool isEffectedByGravity;
+
+    public float mass;
+
+    public Vector2 pos;
+    public Vector2 vel;
+    public Vector2 acc;
+    public Vector2 accumulatedForces;
+    public float facing ;
+    public float rotVel;
+    public float rotAccel;
+    public float dampingConst;
+    public bool ignoreForces;
+    public bool isEffectedByGravity;
 
     public void MakeDefault()
     {
+        mass = 0;
         //pos = Vector2.zero;
         vel = Vector2.zero;
         acc = Vector2.zero;
@@ -27,8 +31,15 @@ struct PhysicsData
         facing = 0.0f;
         rotVel = 0.0f;
         rotAccel = 0.0f;
-        dampingConst = 0.0f;
+        dampingConst = 99;
         ignoreForces = false;
         isEffectedByGravity = true;
+    }
+
+    public Vector2 GetHeadingVector()
+    {
+        
+        return new Vector2(Mathf.Cos(facing * Mathf.Deg2Rad), Mathf.Sin(facing * Mathf.Deg2Rad));
+
     }
 }
