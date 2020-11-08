@@ -38,8 +38,8 @@ public struct PhysicsData
 
     public Vector2 GetHeadingVector()
     {
-        
-        return new Vector2(Mathf.Cos(facing * Mathf.Deg2Rad), Mathf.Sin(facing * Mathf.Deg2Rad));
-
+        return new Vector2(Mathf.Cos(facing), Mathf.Sin(facing));
     }
+
+    public float GetInverseMass() { return 1 / mass; }
 }

@@ -10,6 +10,10 @@ public enum WeaponType
 
 public class Shooting : MonoBehaviour
 {
+    [Range(0.1f,0.009f )]
+    public float rotationSpeed;
+
+
     public WeaponType weaponType = WeaponType.PISTOL;
     public GameObject bulletPrefab;
 
@@ -31,6 +35,28 @@ public class Shooting : MonoBehaviour
         {
              FireWeapon();
         }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameObject.GetComponent<Particle2D>().physicsData.facing += rotationSpeed;
+            
+            if(gameObject.GetComponent<Particle2D>().physicsData.facing > 1)
+            {
+               // gameObject.GetComponent<Particle2D>().physicsData.facing = 1;
+            }
+
+        
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            gameObject.GetComponent<Particle2D>().physicsData.facing -= rotationSpeed;
+
+            if(gameObject.GetComponent<Particle2D>().physicsData.facing < -1) 
+            {
+                //gameObject.GetComponent<Particle2D>().physicsData.facing = -1;
+            }
+        }
+        
     }
 
     void ChangeWeapon()
@@ -57,11 +83,23 @@ public class Shooting : MonoBehaviour
     void FirePistol()
     {
         GameObject bullet = Instantiate(bulletPrefab);
+        //Destroy(bullet,10f);
         bullet.transform.position = transform.position;
         Particle2D particle = bullet.GetComponent<Particle2D>();
         particle.physicsData.vel = gameObject.GetComponent<Particle2D>().physicsData.GetHeadingVector() * 10;
         particle.physicsData.pos = new Vector2(transform.position.x, transform.position.y);
 
+        StartCoroutine(RemoveOBJFromForceManager(bullet));
+
+
+    }
+
+    IEnumerator RemoveOBJFromForceManager(GameObject obj)
+    {
+        yield return new WaitForSeconds(10f);
+
+        ForceManager.deregisterPhysicsObject(obj);
+        Destroy(obj);
 
     }
 }

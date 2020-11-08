@@ -39,4 +39,11 @@ static public class ForceManager
     {
         forceGenerators.Add(forceGen);
     }
+
+    public static void deregisterPhysicsObject( GameObject obj)
+    {
+        objects.Remove(obj);
+        //Debug.Log(objects.Contains(obj));
+
+    }
 }

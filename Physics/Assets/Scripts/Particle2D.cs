@@ -21,8 +21,18 @@ public class Particle2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        gameObject.transform.position = physicsData.pos;
+       
+        transform.position = physicsData.pos;
+        transform.rotation = Quaternion.Euler(0,0,physicsData.facing * Mathf.Rad2Deg);
         physicsData = Integrator.Integrate(physicsData, Time.deltaTime);
     }
+
+    ~Particle2D()
+    {
+        Debug.Log("destructor");
+        ForceManager.deregisterPhysicsObject(gameObject);
+    }
+
+   
 
 }
