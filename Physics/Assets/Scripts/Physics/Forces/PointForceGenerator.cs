@@ -2,19 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceGenerator2D : MonoBehaviour
+public class PointForceGenerator : ForceGenerator2D
 {
     public float range = 1000;
     public float strength;
 
+
+    // Start is called before the first frame update
     void Start()
     {
-
-        ForceManager.registerForceGenerators(this);
-
+        if (autoRegister)
+        {
+            RegisterForceGenerator();
+        }
     }
 
-    public PhysicsData UpdateForce(PhysicsData physicsData, float deltaTime)
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public override PhysicsData UpdateForce(PhysicsData physicsData, float deltaTime)
     {
         if (physicsData.ignoreForces)
             return physicsData;
@@ -24,7 +32,7 @@ public class ForceGenerator2D : MonoBehaviour
         float rangeSQ = range * range;
         float distSQ = diff.magnitude * diff.magnitude;
 
-        if(distSQ < rangeSQ)
+        if (distSQ < rangeSQ)
         {
             float dist = diff.magnitude;
             float proportionAway = dist / range;

@@ -10,6 +10,7 @@ public struct PhysicsData
 
     public float mass;
 
+    public Vector2 scale;
     public Vector2 pos;
     public Vector2 vel;
     public Vector2 acc;
