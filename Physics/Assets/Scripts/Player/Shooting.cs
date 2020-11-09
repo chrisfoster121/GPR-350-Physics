@@ -6,6 +6,7 @@ public enum WeaponType
 {
     PISTOL,
     CHAIN_SHOT,
+    ROD_SHOT,
     MAX_WEAPON
 }
 
@@ -34,12 +35,12 @@ public class Shooting : MonoBehaviour
             ChangeWeapon();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
              FireWeapon();
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             gameObject.GetComponent<Particle2D>().physicsData.facing += rotationSpeed;
             
@@ -50,7 +51,7 @@ public class Shooting : MonoBehaviour
 
         
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             gameObject.GetComponent<Particle2D>().physicsData.facing -= rotationSpeed;
 
@@ -82,6 +83,9 @@ public class Shooting : MonoBehaviour
                 break;
             case WeaponType.CHAIN_SHOT:
                 FireChainShot();
+                break;
+            case WeaponType.ROD_SHOT:
+                FireRod();
                 break;
         }
     }
@@ -115,8 +119,8 @@ public class Shooting : MonoBehaviour
         GameObject bulletTwo = Instantiate(bulletPrefab);
         bulletTwo.transform.position = transform.position;
         bulletOne.GetComponent<SpringForceGenerator>().pair = bulletTwo;
-        bulletOne.GetComponent<SpringForceGenerator>().springConst = 20;
-        bulletOne.GetComponent<SpringForceGenerator>().restLength = 1;
+        bulletOne.GetComponent<SpringForceGenerator>().springConst = 40;
+        bulletOne.GetComponent<SpringForceGenerator>().restLength = 2;
         bulletOne.GetComponent<SpringForceGenerator>().dampener = 5;
 
         Particle2D particleTwo = bulletTwo.GetComponent<Particle2D>();
@@ -131,11 +135,45 @@ public class Shooting : MonoBehaviour
         StartCoroutine(RemoveOBJFromForceManager(bulletTwo));
     }
 
+    void FireRod()
+    {
+        GameObject bulletOne = Instantiate(bulletPrefab);
+        bulletOne.transform.position = transform.position;
+        bulletOne.AddComponent<ParticleRod>();
+
+        Particle2D particleOne = bulletOne.GetComponent<Particle2D>();
+        particleOne.physicsData.vel = gameObject.GetComponent<Particle2D>().physicsData.GetHeadingVector() * (bulletSpeed - 5f);
+        particleOne.physicsData.pos = new Vector2(transform.position.x, transform.position.y);
+        particleOne.physicsData.scale = new Vector2(0.5f, 0.5f);
+
+        GameObject bulletTwo = Instantiate(bulletPrefab);
+        bulletTwo.transform.position = transform.position;
+        //bulletTwo.GetComponent<BouyancyForceGenerator>().enabled = false;
+
+        bulletOne.GetComponent<ParticleRod>().pair = bulletTwo;
+        bulletOne.GetComponent<ParticleRod>().restitution = .5f;
+        bulletOne.GetComponent<ParticleRod>().length = 2;
+        bulletOne.GetComponent<ParticleRod>().penetrationDampener = 100;
+
+        Particle2D particleTwo = bulletTwo.GetComponent<Particle2D>();
+        particleTwo.physicsData.vel = gameObject.GetComponent<Particle2D>().physicsData.GetHeadingVector() * 25;
+        particleTwo.physicsData.pos = new Vector2(transform.position.x, transform.position.y + 1);
+        particleTwo.physicsData.scale = new Vector2(0.5f, 0.5f);
+
+        //bulletOne.GetComponent<SpringForceGenerator>().RegisterForceGenerator();
+        //bulletOne.GetComponent<SpringForceGenerator>().RegisterPhysicsObjects();
+
+        StartCoroutine(RemoveOBJFromForceManager(bulletOne));
+        StartCoroutine(RemoveOBJFromForceManager(bulletTwo));
+    }
+
     IEnumerator RemoveOBJFromForceManager(GameObject obj)
     {
         yield return new WaitForSeconds(10f);
 
         ForceManager.deregisterPhysicsObject(obj);
+        GameObject.Find("PhysicsManager").GetComponent<PhysicsManager>().DeregisterParticle(obj.GetComponent<Particle2D>());
+
         Destroy(obj);
 
     }

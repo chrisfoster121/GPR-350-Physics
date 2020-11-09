@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1304832974530388550}
   - component: {fileID: 2905169050845930757}
   m_Layer: 0
-  m_Name: Particle2D
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1448129031061066661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4356699672962869645}
   - {fileID: 7307701452562464472}
@@ -119,7 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicsData:
     mass: 1
-    pos: {x: 0, y: 0}
+    scale: {x: 2, y: 2}
+    pos: {x: 4.89, y: 2.09}
     vel: {x: 0, y: 0}
     acc: {x: 0, y: -10}
     accumulatedForces: {x: 0, y: 0}

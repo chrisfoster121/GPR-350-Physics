@@ -36,6 +36,22 @@ public class PhysicsManager : MonoBehaviour
                 {
                     if(particle.physicsData.pos.y < temp.physicsData.pos.y + temp.physicsData.scale.y * .5 && particle.physicsData.pos.y > temp.physicsData.pos.y - temp.physicsData.scale.x * .5)
                     {
+                        if (particle.gameObject.GetComponent<SpringForceGenerator>())
+                            if (particle.gameObject.GetComponent<SpringForceGenerator>().pair == temp.gameObject)
+                                continue;
+
+                        if (temp.gameObject.GetComponent<SpringForceGenerator>())
+                            if (temp.gameObject.GetComponent<SpringForceGenerator>().pair == particle.gameObject)
+                                continue;
+
+                        if (particle.gameObject.GetComponent<ParticleRod>())
+                            if (particle.gameObject.GetComponent<ParticleRod>().pair == temp.gameObject)
+                                continue;
+
+                        if (temp.gameObject.GetComponent<ParticleRod>())
+                            if (temp.gameObject.GetComponent<ParticleRod>().pair == particle.gameObject)
+                                continue;
+
                         objects.Remove(temp);
                         ForceManager.deregisterPhysicsObject(temp.gameObject);
                         Destroy(temp.gameObject);
@@ -46,5 +62,12 @@ public class PhysicsManager : MonoBehaviour
         }
        
         return false;
+    }
+
+    public void DeregisterParticle(Particle2D obj)
+    {
+
+        objects.Remove(obj);
+
     }
 }
