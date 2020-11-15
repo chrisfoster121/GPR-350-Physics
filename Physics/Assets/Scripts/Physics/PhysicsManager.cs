@@ -30,44 +30,18 @@ public class PhysicsManager : MonoBehaviour
             return false;
         foreach(Particle2D temp in objects)
         {
-            if(temp != particle  && temp.gameObject.name != "Player")
+            if(temp != null && temp != particle  && temp.gameObject.name != "Player")
             {
-                if(particle.physicsData.pos.x < temp.physicsData.pos.x + temp.physicsData.scale.x * .5 && particle.physicsData.pos.x > temp.physicsData.pos.x - temp.physicsData.scale.x * .5)
+                if(CollisionDetector.DetectCollision(particle.gameObject.GetComponent<Collider>(), temp.gameObject.GetComponent<Collider>()))
                 {
-                    if(particle.physicsData.pos.y < temp.physicsData.pos.y + temp.physicsData.scale.y * .5 && particle.physicsData.pos.y > temp.physicsData.pos.y - temp.physicsData.scale.x * .5)
-                    {
-                        if (particle.gameObject.GetComponent<SpringForceGenerator>())
-                            if (particle.gameObject.GetComponent<SpringForceGenerator>().pair == temp.gameObject)
-                                continue;
-
-                        if (temp.gameObject.GetComponent<SpringForceGenerator>())
-                            if (temp.gameObject.GetComponent<SpringForceGenerator>().pair == particle.gameObject)
-                                continue;
-
-                        if (particle.gameObject.GetComponent<ParticleRod>())
-                            if (particle.gameObject.GetComponent<ParticleRod>().pair == temp.gameObject)
-                                continue;
-
-                        if (temp.gameObject.GetComponent<ParticleRod>())
-                            if (temp.gameObject.GetComponent<ParticleRod>().pair == particle.gameObject)
-                                continue;
-
-                        objects.Remove(temp);
-                        ForceManager.deregisterPhysicsObject(temp.gameObject);
-                        Destroy(temp.gameObject);
-                        return true;
-                    }
+                    objects.Remove(temp);
+                    ForceManager.deregisterPhysicsObject(temp.gameObject);
+                    Destroy(temp.gameObject);
+                    return true;
                 }
             }
         }
        
         return false;
-    }
-
-    public void DeregisterParticle(Particle2D obj)
-    {
-
-        objects.Remove(obj);
-
     }
 }

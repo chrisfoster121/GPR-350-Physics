@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 616837021733847144}
   - component: {fileID: 2181560708288201713}
   - component: {fileID: 7650920707440010029}
+  - component: {fileID: -4693038032509232063}
   - component: {fileID: 1304832974530388550}
   - component: {fileID: 2905169050845930757}
   m_Layer: 0
@@ -105,6 +106,20 @@ MonoBehaviour:
   submersionDepth: 1
   liquidDensity: 25
   volume: 1
+--- !u!114 &-4693038032509232063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448129031061066661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3fc82f401e587949b6b00c8ce392c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  radius: 0
 --- !u!114 &1304832974530388550
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class BouyancyForceGenerator : ForceGenerator2D
         {
             RegisterForceGenerator();
             registerPhysicsObjects();
-            //ForceManager.PrintMapKeys();
+            ForceManager.PrintMapKeys();
         }
     }
 

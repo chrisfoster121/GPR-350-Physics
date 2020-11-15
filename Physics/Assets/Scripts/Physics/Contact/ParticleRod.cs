@@ -47,7 +47,6 @@ public class ParticleRod : ParticleLink
         }
 
         normal.Normalize();
-      
 
         ContactResolver.particleContacts.Add(new ParticleContact(gameObject, pair, restitution, penetration, normal));
     }
