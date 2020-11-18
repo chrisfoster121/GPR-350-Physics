@@ -33,7 +33,7 @@ public static class CollisionDetector
     {
         List<KeyValuePair<Collider, Collider>> invalidCollisions = new List<KeyValuePair<Collider, Collider>>();
 
-        Debug.Log(ignoredCollisions.Count);
+        //Debug.Log(ignoredCollisions.Count);
 
         foreach (KeyValuePair<Collider, Collider> pair in ignoredCollisions)
         {

@@ -70,7 +70,7 @@ static public class ForceManager
     {
         foreach (KeyValuePair<ForceGenerator2D, List<GameObject>> entry in forceGenerators)
         {
-            Debug.Log(entry.Key.GetType().ToString() + " count: " + entry.Value.Count);
+           // Debug.Log(entry.Key.GetType().ToString() + " count: " + entry.Value.Count);
         }
 
     }
