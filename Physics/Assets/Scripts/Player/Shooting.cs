@@ -34,12 +34,12 @@ public class Shooting : MonoBehaviour
             ChangeWeapon();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
              FireWeapon();
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             gameObject.GetComponent<Particle2D>().physicsData.facing += rotationSpeed;
             
@@ -50,7 +50,7 @@ public class Shooting : MonoBehaviour
 
         
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             gameObject.GetComponent<Particle2D>().physicsData.facing -= rotationSpeed;
 
