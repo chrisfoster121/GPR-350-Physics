@@ -29,12 +29,12 @@ public class Particle2D : MonoBehaviour
         transform.position = physicsData.pos;
         transform.rotation = Quaternion.Euler(0,0,physicsData.facing * Mathf.Rad2Deg);
         physicsData = Integrator.Integrate(physicsData, Time.deltaTime);
-        if (CheckCollision())
-        {
-            physicsManager.objects.Remove(this);
-            ForceManager.deregisterPhysicsObject(gameObject);
-            Destroy(gameObject);
-        }
+        //if (CheckCollision())
+        //{
+        //    physicsManager.objects.Remove(this);
+        //    ForceManager.deregisterPhysicsObject(gameObject);
+        //    Destroy(gameObject);
+        //}
     }
 
     ~Particle2D()

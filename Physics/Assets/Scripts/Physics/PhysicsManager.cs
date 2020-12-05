@@ -9,7 +9,7 @@ public class PhysicsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ContactResolver.iterations = 10;
+        ContactResolver.iterations = 1;
     }
 
     // Update is called once per frame
@@ -20,8 +20,8 @@ public class PhysicsManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        ForceManager.updateAllForceGenerators(Time.deltaTime);
-        ContactResolver.ResolveContacts(Time.deltaTime);
+        //ForceManager.updateAllForceGenerators(Time.deltaTime);
+        //ContactResolver.ResolveContacts(Time.deltaTime);
     }
 
     public bool CheckCollision(Particle2D particle)
