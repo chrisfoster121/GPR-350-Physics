@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c865a64252edc0b4ea3cb091b65b0fcf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6283125, g: 0.8679245, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5629115701351144390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48819dd25c79cbd429a94f3263d68118, type: 3}
   m_Name: 
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5629115701351144390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3fc82f401e587949b6b00c8ce392c0f, type: 3}
   m_Name: 
@@ -133,7 +133,7 @@ MonoBehaviour:
     scale: {x: 0.2, y: 0.2}
     pos: {x: 0, y: 0}
     vel: {x: 0, y: 0}
-    acc: {x: 0, y: -10}
+    acc: {x: 0, y: 0}
     accumulatedForces: {x: 0, y: 0}
     facing: 0
     rotVel: 0
